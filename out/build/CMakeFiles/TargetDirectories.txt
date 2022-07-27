@@ -1,0 +1,11 @@
+/home/betterjimmy/Documents/Projects/cpp/todo_app/out/build/CMakeFiles/todo_app.out.dir
+/home/betterjimmy/Documents/Projects/cpp/todo_app/out/build/CMakeFiles/edit_cache.dir
+/home/betterjimmy/Documents/Projects/cpp/todo_app/out/build/CMakeFiles/rebuild_cache.dir
+/home/betterjimmy/Documents/Projects/cpp/todo_app/out/build/src/CMakeFiles/edit_cache.dir
+/home/betterjimmy/Documents/Projects/cpp/todo_app/out/build/src/CMakeFiles/rebuild_cache.dir
+/home/betterjimmy/Documents/Projects/cpp/todo_app/out/build/src/libs/CMakeFiles/edit_cache.dir
+/home/betterjimmy/Documents/Projects/cpp/todo_app/out/build/src/libs/CMakeFiles/rebuild_cache.dir
+/home/betterjimmy/Documents/Projects/cpp/todo_app/out/build/src/libs/internal/CMakeFiles/edit_cache.dir
+/home/betterjimmy/Documents/Projects/cpp/todo_app/out/build/src/libs/internal/CMakeFiles/rebuild_cache.dir
+/home/betterjimmy/Documents/Projects/cpp/todo_app/out/build/src/libs/external/CMakeFiles/edit_cache.dir
+/home/betterjimmy/Documents/Projects/cpp/todo_app/out/build/src/libs/external/CMakeFiles/rebuild_cache.dir
