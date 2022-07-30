@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/todo_app.out.dir/src/main.cpp.o -o todo_app.out 
