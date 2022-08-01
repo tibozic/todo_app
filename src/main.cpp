@@ -1,13 +1,13 @@
 #include <iostream>
 #include <list>
-#include <list>
-
-#include "Task.cpp"
 #include <gtk/gtk.h>
 
 #include "Task.cpp"
 #include "main.h"
 
+using std::list;
+
+list<Task> all_tasks;
 
 int main(int argc, char **argv) {
     GtkApplication *app;
@@ -21,13 +21,24 @@ int main(int argc, char **argv) {
     g_object_unref(app);
     return status;
 }
+
+
+static void app_activate(GApplication *app,
+                            gpointer user_data)
+{
+    GtkWidget *window;
     GtkWidget *box_all_tasks;
     GtkWidget *box_uncompleted_header;
     GtkWidget *box_completed_header;
     GtkWidget *lbl_uncompleted;
     GtkWidget *lbl_completed;
-    lbl_completed = gtk_label_new("Completed tasks");
-    gtk_box_append(GTK_BOX (box_completed_header), lbl_completed);
+    GtkWidget *btn_quit;
+    GtkWidget *btn_add_task;
+
+    /* Create the window */
+    window = gtk_application_window_new(GTK_APPLICATION (app));
+    gtk_window_set_title(GTK_WINDOW (window), "My TODO App");
+    gtk_window_set_default_size(GTK_WINDOW (window), 400, 300);
 
     box_all_tasks = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 10);
     gtk_box_set_homogeneous(GTK_BOX (box_all_tasks), TRUE);
@@ -52,20 +63,41 @@ int main(int argc, char **argv) {
     lbl_uncompleted = gtk_label_new("Uncompleted tasks");
     gtk_box_append(GTK_BOX (box_uncompleted_header), lbl_uncompleted);
 
-    GtkWidget *btn_quit;
-    GtkWidget *btn_add_task;
+    /* Add task button */
+    btn_add_task = gtk_button_new_with_label("New task");
+    g_signal_connect(btn_add_task, "clicked", G_CALLBACK (task_create), NULL);
+    gtk_box_append(GTK_BOX (box_uncompleted_header), btn_add_task);
 
-    /* Create the window */
+    lbl_completed = gtk_label_new("Completed tasks");
+    gtk_box_append(GTK_BOX (box_completed_header), lbl_completed);
 
-static void app_activate(GApplication *app,
-                            gpointer user_data)
-{
-    GtkWidget *window;
-
-    window = gtk_application_window_new(GTK_APPLICATION (app));
-    gtk_window_set_title(GTK_WINDOW (window), "My TODO App");
-    gtk_window_set_default_size(GTK_WINDOW (window), 400, 300);
+    /* Quit button */
+    btn_quit = gtk_button_new_with_label("Quit");
+    g_signal_connect(btn_quit, "clicked", G_CALLBACK (app_quit), window);
+    gtk_box_append(GTK_BOX (box_completed_header), btn_quit);
 
     gtk_widget_show(window);
     g_print("Application is now active.\n");
+}
+
+static void app_quit(GtkButton *btn, gpointer user_data)
+{
+    GtkWindow *win = GTK_WINDOW (user_data);
+    gtk_window_destroy(win);
+}
+
+static void task_create(GtkButton *btn, gpointer user_data)
+{
+    Task new_task;
+    std::cout << "Created task\n";
+    std::cout << "Completness: " << new_task.get_is_completed() << "\n";
+    all_tasks.push_back(new_task);
+}
+
+static void task_complete(GtkButton *btn, gpointer user_data)
+{
+    Task *task = (Task *)user_data;
+    std::cout << "Task name: " << task->get_name() << "\n";
+    g_print("Switching task completness.\n");
+    task->switch_completeness();
 }
