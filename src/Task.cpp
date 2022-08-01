@@ -1,8 +1,5 @@
 #include <string>
-#include <gtk/gtk.h>
 #include "main.h"
-
-using std::string;
 
 class Task {
     public: 
@@ -38,7 +35,7 @@ Task::Task()
     box_task = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
 
     btn_mark_completed = gtk_button_new_with_label("[ ]");
-    g_signal_connect(btn_mark_completed, "clicked", G_CALLBACK (task_complete), this);
+    g_signal_connect(btn_mark_completed, "clicked", G_CALLBACK (task_complete), GINT_TO_POINTER (index));
     gtk_box_append(GTK_BOX (box_task), btn_mark_completed);
 
     task_name = gtk_label_new(name.c_str());
@@ -95,6 +92,6 @@ void Task::switch_completeness()
         gtk_box_append(GTK_BOX (box_completed_tasks), box_task);
     }
 
-    is_completed != is_completed;
+    is_completed = !is_completed;
     g_print("Task successfully switched.\n");
 }
