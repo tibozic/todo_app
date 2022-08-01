@@ -1,9 +1,17 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <vector>
+#include <gtk/gtk.h>
+
+using std::string;
+using std::vector;
+
+class Task;
+
 GtkWidget *box_uncompleted_tasks;
 GtkWidget *box_completed_tasks;
-class Task;
+vector<Task> all_tasks;
 
 static void app_activate(GApplication *app,
                       gpointer user_data);

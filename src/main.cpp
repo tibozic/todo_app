@@ -1,13 +1,7 @@
 #include <iostream>
-#include <list>
-#include <gtk/gtk.h>
 
 #include "Task.cpp"
 #include "main.h"
-
-using std::list;
-
-list<Task> all_tasks;
 
 int main(int argc, char **argv) {
     GtkApplication *app;
