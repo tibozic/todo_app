@@ -8,6 +8,7 @@ class Task {
     public: 
         Task();
 
+        int get_index(void);
         string get_name(void);
         string get_description(void);
         GtkWidget * get_task(void);
@@ -16,6 +17,7 @@ class Task {
         void switch_completeness(void);
 
     private:
+        int index;
         GtkWidget *box_task;
         string name;
         string description;
@@ -28,9 +30,10 @@ Task::Task()
     GtkWidget *btn_mark_completed;
     GtkWidget *task_name;
 
-    is_completed = false;
-    name = "Task name";
+    index = all_tasks.size();
+    name = "Task" + std::to_string(index);
     description = "Task description";
+    is_completed = false;
 
     box_task = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
 
@@ -43,6 +46,13 @@ Task::Task()
     gtk_box_append(GTK_BOX (box_task), task_name);
 
     gtk_box_append(GTK_BOX (box_uncompleted_tasks), box_task);
+
+    all_tasks.push_back(*this);
+}
+
+int Task::get_index(void)
+{
+    return index;
 }
 
 string Task::get_name(void)
