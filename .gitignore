@@ -50,5 +50,7 @@ CTestTestfile.cmake
 _deps
 
 out/build
+tasks.txt
 
 [Bb][Uu][Ii][Ll][Dd]/
+
