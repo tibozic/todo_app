@@ -75,26 +75,18 @@ bool Task::get_is_completed(void)
 
 void Task::switch_completeness()
 {
-    g_print("Checking in which direction to switch.\n");
-    std::cout << "Current: " << get_is_completed() << "\n";
-    std::cout << "Thingy: " << get_name() << "\n";
     if ( is_completed )
     {
-        g_print("Removing from completed tasks.\n");
         gtk_box_remove(GTK_BOX (box_completed_tasks), box_task);
-        g_print("Appending to uncompleted tasks.\n");
         gtk_box_append(GTK_BOX (box_uncompleted_tasks), box_task);
     }
     else 
     {
-        g_print("Removing from uncompleted tasks.\n");
         gtk_box_remove(GTK_BOX (box_uncompleted_tasks), box_task);
-        g_print("Appending to completed tasks.\n");
         gtk_box_append(GTK_BOX (box_completed_tasks), box_task);
     }
 
     is_completed = !is_completed;
-    g_print("Task successfully switched.\n");
 }
 
 void Task::save_to_file(ofstream *file)
