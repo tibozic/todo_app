@@ -86,9 +86,6 @@ static void app_quit(GtkButton *btn, gpointer user_data)
 static void task_create(GtkButton *btn, gpointer user_data)
 {
     Task new_task;
-    std::cout << "Created task: " << new_task.get_name() << "\n";
-    std::cout << "Completness: " << new_task.get_is_completed() << "\n";
-    std::cout << "New task on index: " << new_task.get_index() << "\n";
 }
 
 static void task_complete(GtkButton *btn, gpointer user_data)
@@ -96,9 +93,6 @@ static void task_complete(GtkButton *btn, gpointer user_data)
     int index = GPOINTER_TO_INT (user_data);
     Task *task = &all_tasks[index];
 
-    std::cout << "Task name: " << task->get_name() << "\n";
-    // std::cout << "Clicked task at index: " << (index) << "\n";
-    g_print("Switching task completness.\n");
     task->switch_completeness();
 }
 
