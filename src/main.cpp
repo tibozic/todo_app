@@ -77,6 +77,9 @@ static void app_activate(GApplication *app,
 static void app_quit(GtkButton *btn, gpointer user_data)
 {
     GtkWindow *win = GTK_WINDOW (user_data);
+
+    tasks_save();
+
     gtk_window_destroy(win);
 }
 
@@ -98,3 +101,36 @@ static void task_complete(GtkButton *btn, gpointer user_data)
     g_print("Switching task completness.\n");
     task->switch_completeness();
 }
+
+void tasks_save()
+{
+    ofstream file("tasks.txt");
+
+    for ( Task task : all_tasks )
+    {
+        task.save_to_file(&file);
+    }
+
+    file.close();
+}
+
+vector<string> split(string in, char del)
+{
+    vector<string> tokens;
+    string current;
+
+    for ( char c : in )
+    {
+        if ( c == del )
+        {
+            tokens.push_back(current);
+            current = "";
+        }
+        else
+        {
+            current += c;
+        }
+    }
+
+    return tokens;
+} 
