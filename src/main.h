@@ -27,4 +27,8 @@ static void task_create(GtkButton *btn,
 static void task_complete(GtkButton *btn,
                             gpointer user_data);
 
+void tasks_save();
+
+vector<string> split(string in, char del);
+
 #endif
