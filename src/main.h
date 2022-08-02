@@ -2,10 +2,12 @@
 #define MAIN_H
 
 #include <vector>
+#include <fstream>
 #include <gtk/gtk.h>
 
 using std::string;
 using std::vector;
+using std::ofstream;
 
 class Task;
 

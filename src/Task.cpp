@@ -12,6 +12,7 @@ class Task {
         bool get_is_completed(void);
 
         void switch_completeness(void);
+        void save_to_file(ofstream *file);
 
     private:
         int index;
@@ -94,4 +95,9 @@ void Task::switch_completeness()
 
     is_completed = !is_completed;
     g_print("Task successfully switched.\n");
+}
+
+void Task::save_to_file(ofstream *file)
+{
+    (*file) << name << ";" << description << ";" << is_completed << "\n";
 }
