@@ -89,6 +89,8 @@ static void app_quit(GtkButton *btn, gpointer user_data)
 static void task_create(GtkButton *btn, gpointer user_data)
 {
     Task new_task;
+
+    all_tasks.push_back(new_task);
 }
 
 static void task_complete(GtkButton *btn, gpointer user_data)
@@ -108,6 +110,11 @@ static void task_complete(GtkButton *btn, gpointer user_data)
 
 void tasks_save()
 {
+    if (all_tasks.size() == 0)
+    {
+        return;
+    }
+
     ofstream file("tasks.txt");
 
     for ( Task task : all_tasks )
@@ -158,6 +165,8 @@ vector<string> split(string in, char del)
             current += c;
         }
     }
+
+    tokens.push_back(current);
 
     return tokens;
 } 
