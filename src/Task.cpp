@@ -20,6 +20,7 @@ class Task {
 
         void switch_completeness(void);
         void save_to_file(ofstream *file);
+        static void load_from_file(string line);
 
     private:
         int index;
@@ -142,7 +143,24 @@ void Task::set_is_completed(bool status)
     }
 }
 
+
 void Task::save_to_file(ofstream *file)
 {
     (*file) << name << ";" << description << ";" << is_completed << "\n";
+}
+
+void Task::load_from_file(string line)
+{
+    int index = all_tasks.size();
+    string task_name;
+    string task_description;
+    bool task_is_completed;
+
+    task_name = split(line, ';')[0];
+    task_description = split(line, ';')[1];
+    task_is_completed = atoi(split(line, ';')[2].c_str());
+
+    Task new_task(task_name, task_description, task_is_completed);
+
+    all_tasks.push_back(new_task);
 }

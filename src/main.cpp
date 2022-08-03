@@ -71,7 +71,10 @@ static void app_activate(GApplication *app,
     gtk_box_append(GTK_BOX (box_completed_header), btn_quit);
 
     gtk_widget_show(window);
-    g_print("Application is now active.\n");
+
+
+    std::cout << "Loading tasks.\n";
+    tasks_load();
 }
 
 static void app_quit(GtkButton *btn, gpointer user_data)
@@ -110,6 +113,29 @@ void tasks_save()
     for ( Task task : all_tasks )
     {
         task.save_to_file(&file);
+    }
+
+    file.close();
+}
+
+void tasks_load()
+{
+    ifstream file("tasks.txt");
+
+    if (!file)
+    {
+        file.close();
+        return;
+    }
+
+    string line;
+
+    while ( getline(file, line) )
+    {
+        if ( !line.empty() )
+        {
+            Task::load_from_file(line);
+        }
     }
 
     file.close();

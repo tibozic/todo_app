@@ -8,6 +8,7 @@
 using std::string;
 using std::vector;
 using std::ofstream;
+using std::ifstream;
 
 class Task;
 
@@ -28,6 +29,8 @@ static void task_complete(GtkButton *btn,
                             gpointer user_data);
 
 void tasks_save();
+
+void tasks_load();
 
 vector<string> split(string in, char del);
 
