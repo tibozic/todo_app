@@ -70,7 +70,7 @@ Task::Task(string task_name="",
     {
         gtk_box_append(GTK_BOX (box_completed_tasks), box_task);
     }
-    else 
+    else
     {
         gtk_box_append(GTK_BOX (box_uncompleted_tasks), box_task);
     }
@@ -101,20 +101,21 @@ bool Task::get_is_completed(void)
     return is_completed;
 }
 
-void Task::switch_completeness()
 {
-    if ( is_completed )
-    {
-        gtk_box_remove(GTK_BOX (box_completed_tasks), box_task);
-        gtk_box_append(GTK_BOX (box_uncompleted_tasks), box_task);
-    }
-    else 
+    if ( status )
     {
         gtk_box_remove(GTK_BOX (box_uncompleted_tasks), box_task);
         gtk_box_append(GTK_BOX (box_completed_tasks), box_task);
-    }
 
-    is_completed = !is_completed;
+        gtk_button_set_label(GTK_BUTTON (btn_mark_completed), "[ ]");
+    }
+    else
+    {
+        gtk_box_remove(GTK_BOX (box_completed_tasks), box_task);
+        gtk_box_append(GTK_BOX (box_uncompleted_tasks), box_task);
+
+        gtk_button_set_label(GTK_BUTTON (btn_mark_completed), "[X]");
+    }
 }
 
 void Task::save_to_file(ofstream *file)

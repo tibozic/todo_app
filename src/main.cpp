@@ -93,7 +93,14 @@ static void task_complete(GtkButton *btn, gpointer user_data)
     int index = GPOINTER_TO_INT (user_data);
     Task *task = &all_tasks[index];
 
-    task->switch_completeness();
+    if (task->get_is_completed())
+    {
+        task->set_is_completed(0);
+    }
+    else
+    {
+        task->set_is_completed(1);
+    }
 }
 
 void tasks_save()
