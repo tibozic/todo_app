@@ -39,6 +39,7 @@ static void app_activate(GApplication *app,
 
     g_signal_connect(btn_add_task, "clicked", G_CALLBACK (window_task_create), builder_create_task);
     g_signal_connect(btn_quit, "clicked", G_CALLBACK (app_quit), window);
+    g_signal_connect(window, "close-request", G_CALLBACK (app_quit), window);
 
     gtk_widget_show(window);
 
