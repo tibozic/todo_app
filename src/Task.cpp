@@ -58,11 +58,12 @@ Task::Task(string task_name="",
 
     if ( is_completed )
     {
-        btn_mark_completed = gtk_button_new_with_label("[ ]");
+        btn_mark_completed = gtk_button_new_from_icon_name("edit-undo-symbolic");
     }
     else
     {
-        btn_mark_completed = gtk_button_new_with_label("[X]");
+        // btn_mark_completed = gtk_button_new_with_label("[X]");
+        btn_mark_completed = gtk_button_new_from_icon_name("edit-redo-symbolic");
     }
 
     g_signal_connect(btn_mark_completed, "clicked", G_CALLBACK (task_complete), GINT_TO_POINTER (index));
@@ -132,14 +133,16 @@ void Task::set_is_completed(bool status)
         gtk_box_remove(GTK_BOX (box_uncompleted_tasks), box_task);
         gtk_box_append(GTK_BOX (box_completed_tasks), box_task);
 
-        gtk_button_set_label(GTK_BUTTON (btn_mark_completed), "[ ]");
+        // gtk_button_set_label(GTK_BUTTON (btn_mark_completed), "[ ]");
+        gtk_button_set_icon_name(GTK_BUTTON (btn_mark_completed), "edit-undo-symbolic");
     }
     else
     {
         gtk_box_remove(GTK_BOX (box_completed_tasks), box_task);
         gtk_box_append(GTK_BOX (box_uncompleted_tasks), box_task);
 
-        gtk_button_set_label(GTK_BUTTON (btn_mark_completed), "[X]");
+        // gtk_button_set_label(GTK_BUTTON (btn_mark_completed), "[X]");
+        gtk_button_set_icon_name(GTK_BUTTON (btn_mark_completed), "edit-redo-symbolic");
     }
 }
 
