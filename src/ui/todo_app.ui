@@ -16,13 +16,13 @@
                             <object class="GtkBox" id="box_uncompleted_header">
                                 <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
                                 <child>
-                                    <object class="GtkButton" id="btn_add_task">
-                                        <property name="label">Add task</property>
+                                    <object class="GtkLabel" id="lbl_uncompleted">
+                                        <property name="label">Uncompleted tasks</property>
                                     </object>
                                 </child>
                                 <child>
-                                    <object class="GtkLabel" id="lbl_uncompleted">
-                                        <property name="label">Uncompleted tasks</property>
+                                    <object class="GtkButton" id="btn_add_task">
+                                        <property name="label">Add task</property>
                                     </object>
                                 </child>
                             </object>
@@ -37,13 +37,13 @@
                             <object class="GtkBox" id="box_completed_header">
                                 <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
                                 <child>
-                                    <object class="GtkButton" id="btn_quit">
-                                        <property name="label">Quit</property>
+                                    <object class="GtkLabel" id="lbl_completed">
+                                        <property name="label">Completed tasks</property>
                                     </object>
                                 </child>
                                 <child>
-                                    <object class="GtkLabel" id="lbl_completed">
-                                        <property name="label">Completed tasks</property>
+                                    <object class="GtkButton" id="btn_quit">
+                                        <property name="label">Quit</property>
                                     </object>
                                 </child>
                             </object>

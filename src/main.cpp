@@ -22,12 +22,20 @@ static void app_activate(GApplication *app,
 {
     GtkBuilder *builder;
     GtkWidget *window;
+    GtkWidget *btn_add_task;
+    GtkWidget *btn_quit;
 
     builder = gtk_builder_new_from_file("../../src/ui/todo_app.ui");
     window = GTK_WIDGET (gtk_builder_get_object(builder, "window"));
     box_uncompleted_tasks = GTK_WIDGET (gtk_builder_get_object(builder, "box_uncompleted_tasks"));
     box_completed_tasks = GTK_WIDGET (gtk_builder_get_object(builder, "box_completed_tasks"));
     gtk_window_set_application(GTK_WINDOW (window), GTK_APPLICATION (app));
+
+    btn_add_task = GTK_WIDGET (gtk_builder_get_object(builder, "btn_add_task"));
+    btn_quit = GTK_WIDGET (gtk_builder_get_object(builder, "btn_quit"));
+
+    g_signal_connect(btn_add_task, "clicked", G_CALLBACK (task_create), NULL);
+    g_signal_connect(btn_quit, "clicked", G_CALLBACK (app_quit), window);
 
     gtk_widget_show(window);
 
