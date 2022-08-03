@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <object class="GtkApplicationWindow" id="window_create_task">
+        <property name="title">My Todo App</property>
+        <property name="default-width">400</property>
+        <property name="default-height">300</property>
+        <child>
+            <object class="GtkBox" id="box_create_task">
+                <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+                <child>
+                    <object class="GtkBox" id="box_create_task_header">
+                        <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                            <object class="GtkLabel" id="lbl_task_create">
+                                <property name="label">Create task</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkBox" id="box_create_task_buttons">
+                                <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
+                                <property name="homogeneous">True</property>
+                                <child>
+                                    <object class="GtkButton" id="btn_task_save">
+                                        <property name="label">Save</property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkButton" id="btn_task_cancel">
+                                        <property name="label">Cancel</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkBox" id="box_create_task_name">
+                        <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                            <object class="GtkLabel" id="lbl_task_name">
+                                <property name="label">Task name:</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkEntry"></object>
+                        </child>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkBox" id="box_create_task_description">
+                        <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                            <object class="GtkLabel" id="lbl_task_description">
+                                <property name="label">Task description:</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkEntry"></object>
+                        </child>
+                    </object>
+                </child>
+            </object>
+        </child>
+    </object>
+</interface>
