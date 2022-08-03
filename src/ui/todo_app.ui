@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <object class="GtkApplicationWindow" id="window">
+        <property name="title">My Todo App</property>
+        <property name="default-width">400</property>
+        <property name="default-height">300</property>
+        <child>
+            <object class="GtkBox" id="box_all_tasks">
+                <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
+                <child>
+                    <object class="GtkBox" id="box_uncompleted_tasks">
+                        <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+                        <child>
+                            <object class="GtkBox" id="box_uncompleted_header">
+                                <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
+                                <child>
+                                    <object class="GtkButton" id="btn_add_task">
+                                        <property name="label">Add task</property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkLabel" id="lbl_uncompleted">
+                                        <property name="label">Uncompleted tasks</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkBox" id="box_completed_tasks">
+                        <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+                        <child>
+                            <object class="GtkBox" id="box_completed_header">
+                                <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
+                                <child>
+                                    <object class="GtkButton" id="btn_quit">
+                                        <property name="label">Quit</property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkLabel" id="lbl_completed">
+                                        <property name="label">Completed tasks</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+            </object>
+        </child>
+    </object>
+</interface>
