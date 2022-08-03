@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-    <object class="GtkApplicationWindow" id="window_create_task">
-        <property name="title">My Todo App</property>
+    <object class="GtkApplicationWindow" id="window_task_create">
+        <property name="title">Create new task</property>
         <property name="default-width">400</property>
         <property name="default-height">300</property>
         <child>
@@ -44,7 +44,7 @@
                             </object>
                         </child>
                         <child>
-                            <object class="GtkEntry"></object>
+                            <object class="GtkEntry" id="entry_task_name"></object>
                         </child>
                     </object>
                 </child>
@@ -58,7 +58,7 @@
                             </object>
                         </child>
                         <child>
-                            <object class="GtkEntry"></object>
+                            <object class="GtkEntry" id="entry_task_description"></object>
                         </child>
                     </object>
                 </child>

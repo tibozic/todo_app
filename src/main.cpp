@@ -20,21 +20,24 @@ int main(int argc, char **argv) {
 static void app_activate(GApplication *app,
                             gpointer user_data)
 {
-    GtkBuilder *builder;
+    GtkBuilder *builder_main;
+    GtkBuilder *builder_create_task;
     GtkWidget *window;
     GtkWidget *btn_add_task;
     GtkWidget *btn_quit;
 
-    builder = gtk_builder_new_from_file("../../src/ui/todo_app.ui");
-    window = GTK_WIDGET (gtk_builder_get_object(builder, "window"));
-    box_uncompleted_tasks = GTK_WIDGET (gtk_builder_get_object(builder, "box_uncompleted_tasks"));
-    box_completed_tasks = GTK_WIDGET (gtk_builder_get_object(builder, "box_completed_tasks"));
+    builder_main = gtk_builder_new_from_file("../../src/ui/todo_app.ui");
+    builder_create_task = gtk_builder_new_from_file("../../src/ui/create_task_window.ui");
+
+    window = GTK_WIDGET (gtk_builder_get_object(builder_main, "window"));
+    box_uncompleted_tasks = GTK_WIDGET (gtk_builder_get_object(builder_main, "box_uncompleted_tasks"));
+    box_completed_tasks = GTK_WIDGET (gtk_builder_get_object(builder_main, "box_completed_tasks"));
     gtk_window_set_application(GTK_WINDOW (window), GTK_APPLICATION (app));
 
-    btn_add_task = GTK_WIDGET (gtk_builder_get_object(builder, "btn_add_task"));
-    btn_quit = GTK_WIDGET (gtk_builder_get_object(builder, "btn_quit"));
+    btn_add_task = GTK_WIDGET (gtk_builder_get_object(builder_main, "btn_add_task"));
+    btn_quit = GTK_WIDGET (gtk_builder_get_object(builder_main, "btn_quit"));
 
-    g_signal_connect(btn_add_task, "clicked", G_CALLBACK (task_create), NULL);
+    g_signal_connect(btn_add_task, "clicked", G_CALLBACK (window_task_create), builder_create_task);
     g_signal_connect(btn_quit, "clicked", G_CALLBACK (app_quit), window);
 
     gtk_widget_show(window);
@@ -51,11 +54,58 @@ static void app_quit(GtkButton *btn, gpointer user_data)
     gtk_window_destroy(win);
 }
 
+static void window_task_create(GtkButton *btn, gpointer user_data)
+{
+    GtkBuilder *builder_create_task = GTK_BUILDER (user_data);
+    GtkWidget *window_task_create;
+    GtkWidget *btn_task_save;
+    GtkWidget *btn_task_cancel;
+
+    window_task_create = GTK_WIDGET (gtk_builder_get_object(builder_create_task, "window_task_create"));
+    btn_task_save = GTK_WIDGET (gtk_builder_get_object(builder_create_task, "btn_task_save"));
+    btn_task_cancel = GTK_WIDGET (gtk_builder_get_object(builder_create_task, "btn_task_cancel"));
+
+    g_signal_connect(btn_task_cancel, "clicked", G_CALLBACK (window_task_create_quit), window_task_create);
+    g_signal_connect(btn_task_save, "clicked", G_CALLBACK (task_create), builder_create_task);
+
+    gtk_widget_show(window_task_create);
+}
+
 static void task_create(GtkButton *btn, gpointer user_data)
 {
-    Task new_task;
+    GtkBuilder *builder_create_task = GTK_BUILDER (user_data);
+    GtkWidget *entry_task_name;
+    GtkWidget *entry_task_description;
+    GtkWidget *window;
+
+    GtkEntryBuffer *task_buffer_name;
+    GtkEntryBuffer *task_buffer_description;
+
+    const char *task_name;
+    const char *task_description;
+
+    window = GTK_WIDGET (gtk_builder_get_object(builder_create_task, "window_task_create"));
+
+    entry_task_name = GTK_WIDGET (gtk_builder_get_object(builder_create_task, "entry_task_name"));
+    entry_task_description = GTK_WIDGET (gtk_builder_get_object(builder_create_task, "entry_task_description"));
+
+    task_buffer_name = gtk_entry_get_buffer(GTK_ENTRY (entry_task_name));
+    task_buffer_description = gtk_entry_get_buffer(GTK_ENTRY (entry_task_description));
+
+    task_name = gtk_entry_buffer_get_text(task_buffer_name);
+    task_description = gtk_entry_buffer_get_text(task_buffer_description);
+
+    Task new_task(task_name, task_description, false);
 
     all_tasks.push_back(new_task);
+
+    gtk_window_destroy(GTK_WINDOW (window));
+}
+
+static void window_task_create_quit(GtkButton *btn, gpointer user_data)
+{
+    GtkWindow *win = GTK_WINDOW (user_data);
+    gtk_window_destroy(win);
 }
 
 static void task_complete(GtkButton *btn, gpointer user_data)

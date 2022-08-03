@@ -22,8 +22,14 @@ static void app_activate(GApplication *app,
 static void app_quit(GtkButton *btn,
                             gpointer user_data);
 
-static void task_create(GtkButton *btn,
+static void window_task_create(GtkButton *btn,
                             gpointer user_data);
+
+static void window_task_create_quit(GtkButton *btn,
+                            gpointer user_data);
+
+static void task_create(GtkButton *btn,
+                        gpointer user_data);
 
 static void task_complete(GtkButton *btn,
                             gpointer user_data);
