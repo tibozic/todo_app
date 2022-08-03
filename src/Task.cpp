@@ -13,6 +13,11 @@ class Task {
         GtkWidget * get_task(void);
         bool get_is_completed(void);
 
+        void set_index(int task_index);
+        void set_name(string task_name);
+        void set_description(string task_description);
+        void set_is_completed(bool status);
+
         void switch_completeness(void);
         void save_to_file(ofstream *file);
 
@@ -101,7 +106,26 @@ bool Task::get_is_completed(void)
     return is_completed;
 }
 
+void Task::set_index(int task_index)
 {
+    index = task_index;
+}
+
+void Task::set_name(string task_name)
+{
+    name = task_name;
+}
+
+void Task::set_description(string task_description)
+{
+    description = task_description;
+}
+
+void Task::set_is_completed(bool status)
+{
+    std::cout << "Completing task with index: " << index << std::endl;
+    is_completed = status;
+
     if ( status )
     {
         gtk_box_remove(GTK_BOX (box_uncompleted_tasks), box_task);
