@@ -26,6 +26,7 @@ class Task {
         int index;
         GtkWidget *box_task;
         GtkWidget *btn_mark_completed;
+        GtkWidget *lbl_task_name;
         string name;
         string description;
         bool is_completed;
@@ -36,13 +37,16 @@ Task::Task(string task_name="",
             string task_description="",
             bool task_is_completed=false)
 {
-    GtkWidget *lbl_task_name;
+    GtkWidget *btn_task_edit;
 
     index = all_tasks.size();
 
     name = task_name;
     description = task_description;
     is_completed = task_is_completed;
+
+    btn_task_edit = gtk_button_new_from_icon_name("document-edit-symbolic");
+    g_signal_connect(btn_task_edit, "clicked", G_CALLBACK (task_edit_open), GINT_TO_POINTER(index));
 
     if ( task_name == "" )
     {
@@ -72,6 +76,7 @@ Task::Task(string task_name="",
     lbl_task_name = gtk_label_new(name.c_str());
 
     gtk_box_append(GTK_BOX (box_task), lbl_task_name);
+    gtk_box_append(GTK_BOX (box_task), btn_task_edit);
 
     if ( is_completed )
     {
@@ -116,6 +121,7 @@ void Task::set_index(int task_index)
 void Task::set_name(string task_name)
 {
     name = task_name;
+    gtk_label_set_label(GTK_LABEL (lbl_task_name), name.c_str());
 }
 
 void Task::set_description(string task_description)

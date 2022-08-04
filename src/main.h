@@ -12,6 +12,7 @@ using std::ifstream;
 
 class Task;
 
+GtkBuilder *builder_task_create;
 GtkWidget *box_uncompleted_tasks;
 GtkWidget *box_completed_tasks;
 vector<Task> all_tasks;
@@ -33,6 +34,12 @@ static void task_create(GtkButton *btn,
 
 static void task_complete(GtkButton *btn,
                             gpointer user_data);
+
+static void task_edit_open(GtkButton *btn,
+                            gpointer user_data);
+
+static void task_save(GtkButton *btn,
+                        gpointer user_data);
 
 void tasks_save();
 
