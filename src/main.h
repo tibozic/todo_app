@@ -5,6 +5,11 @@
 #include <fstream>
 #include <gtk/gtk.h>
 
+#define ICON_TASK_COMPLETE "object-select-symbolic"
+#define ICON_TASK_UNCOMPLETE "edit-undo-symbolic"
+#define ICON_TASK_EDIT "document-edit-symbolic"
+#define ICON_TASK_DELETE "edit-delete-symbolic"
+
 using std::string;
 using std::vector;
 using std::ofstream;

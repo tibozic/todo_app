@@ -52,13 +52,13 @@ Task::Task(string task_name="",
     description = task_description;
     is_completed = task_is_completed;
 
-    btn_task_edit = gtk_button_new_from_icon_name("document-edit-symbolic");
+    btn_task_edit = gtk_button_new_from_icon_name(ICON_TASK_EDIT);
     btn_task_edit_id = g_signal_connect(btn_task_edit,
                                                 "clicked",
                                                 G_CALLBACK (task_edit_open),
                                                 GINT_TO_POINTER(index));
 
-    btn_task_delete = gtk_button_new_from_icon_name("edit-delete-symbolic");
+    btn_task_delete = gtk_button_new_from_icon_name(ICON_TASK_DELETE);
     btn_task_delete_id = g_signal_connect(btn_task_delete,
                                             "clicked",
                                             G_CALLBACK (task_delete),
@@ -75,16 +75,13 @@ Task::Task(string task_name="",
         description = "Task description";
     }
 
-    box_task = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
-
     if ( is_completed )
     {
-        btn_mark_completed = gtk_button_new_from_icon_name("edit-undo-symbolic");
+        btn_mark_completed = gtk_button_new_from_icon_name(ICON_TASK_UNCOMPLETE);
     }
     else
     {
-        // btn_mark_completed = gtk_button_new_with_label("[X]");
-        btn_mark_completed = gtk_button_new_from_icon_name("edit-redo-symbolic");
+        btn_mark_completed = gtk_button_new_from_icon_name(ICON_TASK_COMPLETE);
     }
 
     btn_task_mark_completed_id = g_signal_connect(btn_mark_completed,
@@ -163,7 +160,7 @@ void Task::set_is_completed(bool status)
         gtk_box_append(GTK_BOX (box_completed_tasks), box_task);
 
         // gtk_button_set_label(GTK_BUTTON (btn_mark_completed), "[ ]");
-        gtk_button_set_icon_name(GTK_BUTTON (btn_mark_completed), "edit-undo-symbolic");
+        gtk_button_set_icon_name(GTK_BUTTON (btn_mark_completed), ICON_TASK_UNCOMPLETE);
     }
     else
     {
@@ -171,7 +168,7 @@ void Task::set_is_completed(bool status)
         gtk_box_append(GTK_BOX (box_uncompleted_tasks), box_task);
 
         // gtk_button_set_label(GTK_BUTTON (btn_mark_completed), "[X]");
-        gtk_button_set_icon_name(GTK_BUTTON (btn_mark_completed), "edit-redo-symbolic");
+        gtk_button_set_icon_name(GTK_BUTTON (btn_mark_completed), ICON_TASK_COMPLETE);
     }
 }
 
