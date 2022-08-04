@@ -59,10 +59,23 @@ static void window_task_create(GtkButton *btn, gpointer user_data)
     GtkWidget *window_task_create;
     GtkWidget *btn_task_save;
     GtkWidget *btn_task_cancel;
+    GtkWidget *entry_task_name;
+    GtkWidget *entry_task_description;
+    GtkEntryBuffer *task_buffer_name;
+    GtkEntryBuffer *task_buffer_description;
 
     window_task_create = GTK_WIDGET (gtk_builder_get_object(builder_task_create, "window_task_create"));
     btn_task_save = GTK_WIDGET (gtk_builder_get_object(builder_task_create, "btn_task_save"));
     btn_task_cancel = GTK_WIDGET (gtk_builder_get_object(builder_task_create, "btn_task_cancel"));
+
+    entry_task_name = GTK_WIDGET (gtk_builder_get_object(builder_task_create, "entry_task_name"));
+    entry_task_description = GTK_WIDGET (gtk_builder_get_object(builder_task_create, "entry_task_description"));
+
+    task_buffer_name = gtk_entry_get_buffer(GTK_ENTRY (entry_task_name));
+    task_buffer_description = gtk_entry_get_buffer(GTK_ENTRY (entry_task_description));
+
+    gtk_entry_buffer_set_text(task_buffer_name, "", 255);
+    gtk_entry_buffer_set_text(task_buffer_description, "", 255);
 
     g_signal_connect(btn_task_cancel, "clicked", G_CALLBACK (window_task_create_quit), window_task_create);
 
