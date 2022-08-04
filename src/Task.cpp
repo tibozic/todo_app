@@ -25,16 +25,20 @@ class Task {
         static void load_from_file(string line);
 
     private:
-        int index;
         GtkWidget *box_task;
         GtkWidget *btn_mark_completed;
         GtkWidget *btn_task_edit;
         GtkWidget *btn_task_delete;
         GtkWidget *lbl_task_name;
+
+        int index;
         string name;
         string description;
         bool is_completed;
 
+        int btn_task_mark_completed_id;
+        int btn_task_edit_id;
+        int btn_task_delete_id;
 };
 
 Task::Task(string task_name="",
@@ -49,10 +53,16 @@ Task::Task(string task_name="",
     is_completed = task_is_completed;
 
     btn_task_edit = gtk_button_new_from_icon_name("document-edit-symbolic");
-    g_signal_connect(btn_task_edit, "clicked", G_CALLBACK (task_edit_open), GINT_TO_POINTER(index));
+    btn_task_edit_id = g_signal_connect(btn_task_edit,
+                                                "clicked",
+                                                G_CALLBACK (task_edit_open),
+                                                GINT_TO_POINTER(index));
 
     btn_task_delete = gtk_button_new_from_icon_name("edit-delete-symbolic");
-    g_signal_connect(btn_task_delete, "clicked", G_CALLBACK (task_delete), GINT_TO_POINTER(index));
+    btn_task_delete_id = g_signal_connect(btn_task_delete,
+                                            "clicked",
+                                            G_CALLBACK (task_delete),
+                                            GINT_TO_POINTER(index));
 
 
     if ( task_name == "" )
@@ -77,7 +87,11 @@ Task::Task(string task_name="",
         btn_mark_completed = gtk_button_new_from_icon_name("edit-redo-symbolic");
     }
 
-    g_signal_connect(btn_mark_completed, "clicked", G_CALLBACK (task_complete), GINT_TO_POINTER (index));
+    btn_task_mark_completed_id = g_signal_connect(btn_mark_completed,
+                                                    "clicked",
+                                                    G_CALLBACK (task_complete),
+                                                    GINT_TO_POINTER (index));
+
     gtk_box_append(GTK_BOX (box_task), btn_mark_completed);
 
     lbl_task_name = gtk_label_new(name.c_str());
@@ -176,9 +190,24 @@ void Task::update(void)
 {
     // All buttons send index via user data, this index has to be updated
 
-    g_signal_connect(btn_task_edit, "clicked", G_CALLBACK (task_edit_open), GINT_TO_POINTER(index));
-    g_signal_connect(btn_task_delete, "clicked", G_CALLBACK (task_delete), GINT_TO_POINTER(index));
-    g_signal_connect(btn_mark_completed, "clicked", G_CALLBACK (task_complete), GINT_TO_POINTER (index));
+    g_signal_handler_disconnect(btn_mark_completed, btn_task_mark_completed_id);
+    g_signal_handler_disconnect(btn_task_edit, btn_task_edit_id);
+    g_signal_handler_disconnect(btn_task_delete, btn_task_delete_id);
+
+    btn_task_mark_completed_id = g_signal_connect(btn_mark_completed,
+                                                    "clicked",
+                                                    G_CALLBACK (task_complete),
+                                                    GINT_TO_POINTER (index));
+
+    btn_task_edit_id = g_signal_connect(btn_task_edit,
+                                                "clicked",
+                                                G_CALLBACK (task_edit_open),
+                                                GINT_TO_POINTER(index));
+
+    btn_task_delete_id = g_signal_connect(btn_task_delete,
+                                            "clicked",
+                                            G_CALLBACK (task_delete),
+                                            GINT_TO_POINTER(index));
 }
 
 void Task::save_to_file(ofstream *file)

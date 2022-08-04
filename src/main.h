@@ -16,6 +16,7 @@ GtkBuilder *builder_task_create;
 GtkWidget *box_uncompleted_tasks;
 GtkWidget *box_completed_tasks;
 vector<Task> all_tasks;
+bool window_task_create_exists = false;
 
 static void app_activate(GApplication *app,
                       gpointer user_data);

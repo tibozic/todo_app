@@ -65,7 +65,12 @@ static void window_task_create(GtkButton *btn, gpointer user_data)
     btn_task_cancel = GTK_WIDGET (gtk_builder_get_object(builder_task_create, "btn_task_cancel"));
 
     g_signal_connect(btn_task_cancel, "clicked", G_CALLBACK (window_task_create_quit), window_task_create);
-    g_signal_connect(btn_task_save, "clicked", G_CALLBACK (task_create), builder_task_create);
+
+    if ( !window_task_create_exists )
+    {
+        g_signal_connect(btn_task_save, "clicked", G_CALLBACK (task_create), window_task_create);
+        window_task_create_exists = true;
+    }
 
     gtk_widget_show(window_task_create);
 }
@@ -97,7 +102,7 @@ static void task_create(GtkButton *btn, gpointer user_data)
 
     all_tasks.push_back(new_task);
 
-    gtk_window_destroy(GTK_WINDOW (window));
+    gtk_widget_hide(window);
 }
 
 static void window_task_create_quit(GtkButton *btn, gpointer user_data)
