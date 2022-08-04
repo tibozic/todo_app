@@ -45,6 +45,13 @@ Task::Task(string task_name="",
             string task_description="",
             bool task_is_completed=false)
 {
+    GtkWidget *box_control_btns;
+
+    box_control_btns = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
+    gtk_box_set_homogeneous(GTK_BOX (box_control_btns), true);
+
+    box_task = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
+    gtk_box_set_homogeneous(GTK_BOX (box_task), true);
 
     index = all_tasks.size();
 
@@ -89,13 +96,14 @@ Task::Task(string task_name="",
                                                     G_CALLBACK (task_complete),
                                                     GINT_TO_POINTER (index));
 
-    gtk_box_append(GTK_BOX (box_task), btn_mark_completed);
+    gtk_box_append(GTK_BOX (box_control_btns), btn_task_edit);
+    gtk_box_append(GTK_BOX (box_control_btns), btn_task_delete);
 
     lbl_task_name = gtk_label_new(name.c_str());
 
+    gtk_box_append(GTK_BOX (box_task), btn_mark_completed);
     gtk_box_append(GTK_BOX (box_task), lbl_task_name);
-    gtk_box_append(GTK_BOX (box_task), btn_task_edit);
-    gtk_box_append(GTK_BOX (box_task), btn_task_delete);
+    gtk_box_append(GTK_BOX (box_task), box_control_btns);
 
     if ( is_completed )
     {
