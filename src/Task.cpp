@@ -18,6 +18,7 @@ class Task {
         void set_description(string task_description);
         void set_is_completed(bool status);
 
+        void update(void);
         void switch_completeness(void);
         void save_to_file(ofstream *file);
         static void load_from_file(string line);
@@ -26,6 +27,8 @@ class Task {
         int index;
         GtkWidget *box_task;
         GtkWidget *btn_mark_completed;
+        GtkWidget *btn_task_edit;
+        GtkWidget *btn_task_delete;
         GtkWidget *lbl_task_name;
         string name;
         string description;
@@ -37,7 +40,6 @@ Task::Task(string task_name="",
             string task_description="",
             bool task_is_completed=false)
 {
-    GtkWidget *btn_task_edit;
 
     index = all_tasks.size();
 
@@ -152,6 +154,14 @@ void Task::set_is_completed(bool status)
     }
 }
 
+void Task::update(void)
+{
+    // All buttons send index via user data, this index has to be updated
+
+    g_signal_connect(btn_task_edit, "clicked", G_CALLBACK (task_edit_open), GINT_TO_POINTER(index));
+    g_signal_connect(btn_task_delete, "clicked", G_CALLBACK (task_delete), GINT_TO_POINTER(index));
+    g_signal_connect(btn_mark_completed, "clicked", G_CALLBACK (task_complete), GINT_TO_POINTER (index));
+}
 
 void Task::save_to_file(ofstream *file)
 {
