@@ -41,6 +41,9 @@ static void task_edit_open(GtkButton *btn,
 static void task_save(GtkButton *btn,
                         gpointer user_data);
 
+static void task_delete(GtkButton *btn,
+                        gpointer user_data);
+
 void tasks_save();
 
 void tasks_load();

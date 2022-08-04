@@ -1,4 +1,4 @@
 [X] - New window for creating a task
-[ ] - Replace [ ] and [X] in buttons with images
-[ ] - Add remove task button
-[ ] - Add view/edit task button
+[X] - Replace [ ] and [X] in buttons with images
+[X] - Add remove task button
+[X] - Add view/edit task button

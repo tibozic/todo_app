@@ -19,6 +19,7 @@ class Task {
         void set_is_completed(bool status);
 
         void update(void);
+        void remove(void);
         void switch_completeness(void);
         void save_to_file(ofstream *file);
         static void load_from_file(string line);
@@ -50,6 +51,10 @@ Task::Task(string task_name="",
     btn_task_edit = gtk_button_new_from_icon_name("document-edit-symbolic");
     g_signal_connect(btn_task_edit, "clicked", G_CALLBACK (task_edit_open), GINT_TO_POINTER(index));
 
+    btn_task_delete = gtk_button_new_from_icon_name("edit-delete-symbolic");
+    g_signal_connect(btn_task_delete, "clicked", G_CALLBACK (task_delete), GINT_TO_POINTER(index));
+
+
     if ( task_name == "" )
     {
         name = "Task" + std::to_string(index);
@@ -79,6 +84,7 @@ Task::Task(string task_name="",
 
     gtk_box_append(GTK_BOX (box_task), lbl_task_name);
     gtk_box_append(GTK_BOX (box_task), btn_task_edit);
+    gtk_box_append(GTK_BOX (box_task), btn_task_delete);
 
     if ( is_completed )
     {
@@ -151,6 +157,18 @@ void Task::set_is_completed(bool status)
 
         // gtk_button_set_label(GTK_BUTTON (btn_mark_completed), "[X]");
         gtk_button_set_icon_name(GTK_BUTTON (btn_mark_completed), "edit-redo-symbolic");
+    }
+}
+
+void Task::remove(void)
+{
+    if (is_completed)
+    {
+        gtk_box_remove(GTK_BOX (box_completed_tasks), box_task);
+    }
+    else
+    {
+        gtk_box_remove(GTK_BOX (box_uncompleted_tasks), box_task);
     }
 }
 

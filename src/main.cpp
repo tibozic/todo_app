@@ -188,6 +188,26 @@ static void task_save(GtkButton *btn, gpointer user_data)
     gtk_widget_hide(window);
 }
 
+static void task_delete(GtkButton *btn, gpointer user_data)
+{
+    int index = GPOINTER_TO_INT(user_data);
+    Task *current;
+    Task *next;
+
+    current = &all_tasks[index];
+    current->remove();
+
+    for ( int i = index; i < all_tasks.size()-1; ++i)
+    {
+        next = &all_tasks[i+1];
+
+        next->set_index(i);
+        next->update();
+
+        all_tasks[i] = *next;
+    }
+}
+
 void tasks_save()
 {
     if (all_tasks.size() == 0)
