@@ -3,12 +3,16 @@
     <object class="GtkApplicationWindow" id="window_task_create">
         <property name="title">Create new task</property>
         <property name="default-width">400</property>
-        <property name="default-height">300</property>
+        <property name="default-height">120</property>
         <child>
             <object class="GtkBox" id="box_create_task">
                 <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+                <property name="margin-start">5</property>
+                <property name="margin-end">5</property>
+                <property name="margin-bottom">5</property>
                 <child>
                     <object class="GtkBox" id="box_create_task_header">
+                        <property name="margin-bottom">5</property>
                         <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
                         <property name="homogeneous">True</property>
                         <child>
@@ -36,6 +40,7 @@
                 </child>
                 <child>
                     <object class="GtkBox" id="box_create_task_name">
+                        <property name="margin-bottom">5</property>
                         <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
                         <property name="homogeneous">True</property>
                         <child>
@@ -50,6 +55,7 @@
                 </child>
                 <child>
                     <object class="GtkBox" id="box_create_task_description">
+                        <property name="margin-bottom">5</property>
                         <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
                         <property name="homogeneous">True</property>
                         <child>

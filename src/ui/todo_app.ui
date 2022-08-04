@@ -8,10 +8,14 @@
             <object class="GtkBox" id="box_all_tasks">
                 <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
                 <property name="homogeneous">True</property>
+                <property name="margin-start">5</property>
+                <property name="margin-end">5</property>
+                <property name="margin-bottom">5</property>
                 <child>
                     <object class="GtkBox" id="box_uncompleted_tasks">
                         <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
                         <property name="homogeneous">False</property>
+                        <property name="margin-end">5</property>
                         <child>
                             <object class="GtkBox" id="box_uncompleted_header">
                                 <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
@@ -19,6 +23,11 @@
                                 <child>
                                     <object class="GtkLabel" id="lbl_uncompleted">
                                         <property name="label">Uncompleted tasks</property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkLabel" id="uncompleted_header_margin">
+                                        <property name="width-chars">1</property>
                                     </object>
                                 </child>
                                 <child>
@@ -34,6 +43,7 @@
                     <object class="GtkBox" id="box_completed_tasks">
                         <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
                         <property name="homogeneous">False</property>
+                        <property name="margin-start">5</property>
                         <child>
                             <object class="GtkBox" id="box_completed_header">
                                 <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
@@ -41,6 +51,11 @@
                                 <child>
                                     <object class="GtkLabel" id="lbl_completed">
                                         <property name="label">Completed tasks</property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkLabel" id="completed_header_margin">
+                                        <property name="width-chars">1</property>
                                     </object>
                                 </child>
                                 <child>
