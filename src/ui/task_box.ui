@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <object class="GtkBox" id="box_task">
+        <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
+        <property name="homogeneous">True</property>
+        <child>
+            <object class="GtkButton" id="btn_mark_completed">
+                <property name="label">Complete task button</property>
+            </object>
+        </child>
+        <child>
+            <object class="GtkLabel" id="lbl_task_name">
+                <property name="label">Task name</property>
+            </object>
+        </child>
+        <child>
+            <object class="GtkBox" id="box_control_btns">
+                <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
+                <property name="homogeneous">True</property>
+                <child>
+                    <object class="GtkButton" id="btn_task_edit">
+                        <property name="label">Edit task</property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkButton" id="btn_task_delete">
+                        <property name="label">Delete task</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+    </object>
+</interface>
