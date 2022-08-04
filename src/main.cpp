@@ -93,14 +93,13 @@ static void task_create(GtkButton *btn, gpointer user_data)
     GtkWidget *entry_task_name;
     GtkWidget *entry_task_description;
     GtkWidget *window;
-
     GtkEntryBuffer *task_buffer_name;
     GtkEntryBuffer *task_buffer_description;
 
     const char *task_name;
     const char *task_description;
 
-    window = GTK_WIDGET (gtk_builder_get_object(builder_task_create, "window_task_create"));
+    window = GTK_WIDGET (user_data);
 
     entry_task_name = GTK_WIDGET (gtk_builder_get_object(builder_task_create, "entry_task_name"));
     entry_task_description = GTK_WIDGET (gtk_builder_get_object(builder_task_create, "entry_task_description"));
@@ -220,7 +219,6 @@ static void task_delete(GtkButton *btn, gpointer user_data)
         next = &all_tasks[i+1];
 
         next->set_index(i);
-        next->update();
 
         all_tasks[i] = *next;
     }

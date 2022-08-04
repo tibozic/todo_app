@@ -138,6 +138,7 @@ bool Task::get_is_completed(void)
 void Task::set_index(int task_index)
 {
     index = task_index;
+    this->update();
 }
 
 void Task::set_name(string task_name)
