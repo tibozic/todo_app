@@ -10,7 +10,7 @@ of C++ and to get into the world of GUI programming.
 ```sh
 ./configure.sh # updates the CMAKE configuration
 ./build.sh # builds all the files
-./run.sh # runs the output
+./run.sh # runs the program
 ```
 
 ## Sources
