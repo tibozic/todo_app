@@ -51,6 +51,7 @@ _deps
 
 out/build
 tasks.txt
+.cache/
 
 [Bb][Uu][Ii][Ll][Dd]/
 
