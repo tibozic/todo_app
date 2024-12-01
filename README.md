@@ -1,14 +1,49 @@
-# TODO APP
+# Namizna aplikacija za sledenje opravilom ("TODO App")
+Cilj projekta je bil razviti intuitivno in enostavno namizno aplikacijo za sledenje opravilom, ki omogoča učinkovito organizacijo in upravljanje osebnih ali profesionalnih nalog. Aplikacija je zasnovana za Linux okolje in omogoča osnovne funkcionalnosti, kot so dodajanje, urejanje, označevanje opravljenih opravil ter odstranjevanje nalog.
 
-A simple app for tracking your current TODO's. <br>
-Written using in C++ using the GTK library.
+<p align="center">
+  <img src="images/main_window.png">
+</p>
 
-Main goal of this project is to improve my knowledge
-of C++ and to get into the world of GUI programming.
+##  Funkcionalnosti:
+- Dodajanje opravil: Uporabnik lahko vnese nova opravila s kratkim opisom naloge.
+- Urejanje opravil: Možnost naknadne spremembe opisa naloge.
+- Označevanje opravljenih opravil: Uporabnik lahko označi opravila kot dokončana.
+- Odstranjevanje opravil: Opravila, ki niso več potrebna, se lahko izbrišejo.
+
+## Tehnologije:
+- C++
+- Linux
+- CMake
+- GTK4
+
+## Možne nadgradnje
+- Vpeljava prioritete opravil:
+    - Dodajanje možnosti nastavitve prioritet (nizka, srednja, visoka) za vsako nalogo.
+    - Barvno označevanje in sortiranje opravil glede na njihovo prioriteto.
+- Časovne omejitve opravil:
+    - Omogočanje nastavitve roka za dokončanje posameznih opravil.
+    - Vizualna opozorila ali opomniki za naloge, katerih rok se bliža ali je že potekel.
+- Zgodovina opravil:
+    - Evidenca vseh opravljenih ali odstranjenih opravil za kasnejši pregled.
+    - Možnost ponovnega aktiviranja izbrisanih nalog.
+- Statistika opravil:
+    - Pregled uspešnosti uporabnika (opravljena, neopravljena in zamujena opravila).
+    - Grafični prikaz napredka skozi čas.
+
+## Ključne prednosti aplikacije
+- Preprostost aplikacije: preprost GUI, logičen še za tako laike uporabnike
+- Lahka aplikacija: zaradi implementacije le najbolj osnovnih funkcji je aplikacija zelo lahka in deluje tudi na najšibkejših sistemih
+- Razvita za Linux
 
 ## Images
-![Main window](https://github.com/tibozic/todo_app/blob/master/main_window.png)
-![Add task/Edit task window](https://github.com/tibozic/todo_app/blob/master/add_task_window.png)
+<p align="center">
+  <img src="images/main_window.png">
+  <br>
+  <br>
+  <br>
+  <img src="images/add_task_window.png">
+</p>
 
 ## Usage
 ### Linux
