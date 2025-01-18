@@ -32,7 +32,7 @@ Application is designed for the Linux environment and provides basic functionali
     - Overview of user performance (completed, incomplete, and overdue tasks).
     - Graphical display of progress over time.
 
-## Key Benefits of the Application:
+## Key Benefits:
 - Simplicity of the application: a simple GUI, logical even for novice users.
 - Lightweight application: due to the implementation of only the most basic functions, the application is very light and works on even the weakest systems.
 - Developed for Linux.
